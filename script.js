@@ -15,7 +15,7 @@ const DATABASE_MATERI = [
       {
         title: "Konsep Dasar Aljabar & Mengapa Ada Huruf x, y",
         why: "Alternatifa menjelaskan kenapa huruf dipakai menggantikan angka sebelum masuk rumus.",
-        videoId: "6m7j9v0m18c" // Masukkan ID Video Alternatifa: Pengantar Aljabar
+        videoId: "gQ80cSWD5U6N1dBP" // Masukkan ID Video Alternatifa: Pengantar Aljabar
       },
       {
         title: "Operasi Bentuk Aljabar & Suku Sejenis",
