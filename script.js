@@ -1,89 +1,101 @@
-/* ================= DATABASE 7 TOPIK MVP ================= */
+/* ================= DATABASE MATERI TERKURASI ================= 
+   - Matematika : Alternatifa Project
+   - Fisika     : Edcent.id
+   - Coding     : Kelas Terbuka
+================================================================ */
+
 const DATABASE_MATERI = [
+  // ---------------- MATEMATIKA (ALTERNATIFA PROJECT) ----------------
   {
     keyword: "aljabar",
     subject: "Matematika",
-    title: "Roadmap Memahami Aljabar Dasar",
+    channel: "Alternatifa Project",
+    title: "Roadmap Aljabar: Memahami Logika Variabel",
     steps: [
       {
-        title: "Mengenal Variabel, Koefisien, & Konstanta",
-        why: "Pahami dulu arti huruf pengganti angka (x dan y) agar tidak bingung melihat rumus.",
-        videoId: "kILm0r3sQO4"
+        title: "Konsep Dasar Aljabar & Mengapa Ada Huruf x, y",
+        why: "Alternatifa menjelaskan kenapa huruf dipakai menggantikan angka sebelum masuk rumus.",
+        videoId: "6m7j9v0m18c" // Masukkan ID Video Alternatifa: Pengantar Aljabar
       },
       {
-        title: "Operasi Penjumlahan & Pengurangan Suku Sejenis",
-        why: "Hanya suku dengan huruf yang sama yang boleh dijumlahkan (misal 2x + 3x).",
-        videoId: "f84-v_b6_n0"
+        title: "Operasi Bentuk Aljabar & Suku Sejenis",
+        why: "Memahami aturan pengelompokan suku aljabar secara visual.",
+        videoId: "q3_7c9rW4kE" // Masukkan ID Video Alternatifa: Operasi Aljabar
       },
       {
         title: "Persamaan Linear Satu Variabel (PLSV)",
-        why: "Latihan mencari nilai x dengan konsep ekuivalen kedua ruas yang benar.",
-        videoId: "sK3hP_1y2aQ"
+        why: "Logika kedua ruas timbangan agar tidak sekadar 'pindah ruas' tanpa paham.",
+        videoId: "N0mX0g9LzPk" // Masukkan ID Video Alternatifa: PLSV
       }
     ]
   },
   {
     keyword: "bangun ruang",
     subject: "Matematika",
-    title: "Roadmap Bangun Ruang (Geometri 3D)",
+    channel: "Alternatifa Project",
+    title: "Roadmap Geometri 3D & Bangun Ruang",
     steps: [
       {
-        title: "Konsep Luas Permukaan vs Volume",
-        why: "Bedakan antara selimut luar dan isi ruang agar tidak salah pilih rumus.",
-        videoId: "y4Fm7k8bW3c"
+        title: "Intuisi Dimensi Tiga & Jaring-jaring Ruang",
+        why: "Melatih visualisasi bentuk 3D dari lembaran 2D datar.",
+        videoId: "kILm0r3sQO4" // Masukkan ID Video Alternatifa: Geometri 3D
       },
       {
-        title: "Kubus & Balok (Jaring-jaring & Diagonal)",
-        why: "Melatih daya imajinasi visual ruang tiga dimensi dari bentuk paling sederhana.",
-        videoId: "v5hN8_rQ2a4"
+        title: "Volume: Mengapa Rumus Prisma Luas Alas x Tinggi?",
+        why: "Membongkar asal mula rumus volume tumpukan luas alas.",
+        videoId: "f84-v_b6_n0" 
       },
       {
-        title: "Prisma & Limas (Pola Luas Alas x Tinggi)",
-        why: "Pahami bahwa semua bangun ruang tegak memiliki pola formula yang seragam.",
-        videoId: "z1X9mK8L2s0"
+        title: "Luas Permukaan & Diagonal Ruang",
+        why: "Menghitung selimut ruang dan jarak antar titik kubus/balok.",
+        videoId: "sK3hP_1y2aQ"
       }
     ]
   },
   {
     keyword: "polinomial",
     subject: "Matematika",
+    channel: "Alternatifa Project",
     title: "Roadmap Polinomial (Suku Banyak)",
     steps: [
       {
-        title: "Prasyarat: Operasi Pangkat & Aljabar Dasar",
-        why: "Polinomial adalah perluasan aljabar yang memiliki pangkat lebih dari dua.",
-        videoId: "q2W5mN8vX1s"
+        title: "Fondasi Suku Banyak & Derajat Pangkat",
+        why: "Mengenal bentuk umum polinomial dan perilakunya pada grafik fungsi.",
+        videoId: "q2W5mN8vX1s" // Masukkan ID Video Alternatifa: Polinomial Dasar
       },
       {
-        title: "Pembagian Suku Banyak (Metode Bersusun & Horner)",
-        why: "Menyelesaikan pembagian suku banyak dengan cara cepat dan runtut.",
+        title: "Metode Pembagian Horner & Bersusun",
+        why: "Cara ringkas membagi suku banyak tanpa proses pembagian aljabar yang panjang.",
         videoId: "m9L2vP5xK8w"
       },
       {
-        title: "Teorema Sisa & Teorema Faktor",
-        why: "Kunci mencari akar persamaan polinomial dalam soal-soal ujian.",
+        title: "Teorema Sisa dan Teorema Faktor",
+        why: "Mencari akar-akar persamaan suku banyak untuk soal ujian.",
         videoId: "k4R8mQ2vL9a"
       }
     ]
   },
+
+  // ---------------- FISIKA (EDCENT) ----------------
   {
     keyword: "glbb",
     subject: "Fisika",
-    title: "Roadmap Fisika: GLB & GLBB",
+    channel: "Edcent.id",
+    title: "Roadmap Kinematika: GLB & GLBB",
     steps: [
       {
-        title: "Beda Posisi, Jarak, & Perpindahan",
-        why: "Fondasi paling awal mekanika gerak agar tidak salah memasukkan nilai negatif/positif.",
-        videoId: "a1B2c3D4e5F"
+        title: "Perbedaan Jarak vs Perpindahan & Kecepatan",
+        why: "Edcent membedah konsep acuan arah gerak agar tanda positif/negatif tidak salah.",
+        videoId: "a1B2c3D4e5F" // Masukkan ID Video Edcent: GLB Dasar
       },
       {
-        title: "Konsep Percepatan (a) & Grafik Gerak",
-        why: "Memahami makna pertambahan laju tiap detik lewat pembacaan grafik v-t.",
-        videoId: "g6H7i8J9k0L"
+        title: "Makna Fisis Percepatan (a) & Grafik Kecepatan",
+        why: "Membaca grafik v-t untuk mencari jarak dari luas bidang di bawah kurva.",
+        videoId: "g6H7i8J9k0L" // Masukkan ID Video Edcent: Konsep GLBB
       },
       {
-        title: "3 Persamaan Utama GLBB",
-        why: "Menerapkan formula vt = v0 + at secara logis tanpa menghafal buta.",
+        title: "Analisis 3 Persamaan Utama GLBB",
+        why: "Menentukan persamaan mana yang harus dipakai berdasarkan variabel yang diketahui.",
         videoId: "m1N2o3P4q5R"
       }
     ]
@@ -91,248 +103,72 @@ const DATABASE_MATERI = [
   {
     keyword: "vektor",
     subject: "Fisika",
-    title: "Roadmap Fisika: Analisis Vektor",
+    channel: "Edcent.id",
+    title: "Roadmap Analisis Vektor & Resultan",
     steps: [
       {
-        title: "Besaran Skalar vs Besaran Vektor",
-        why: "Vektor memiliki arah nilai; bergerak ke kiri berbeda dengan bergerak ke kanan.",
-        videoId: "s6T7u8V9w0X"
+        title: "Besaran Skalar vs Vektor & Penggambaran Panah",
+        why: "Memahami bahwa penjumlahan besaran vektor bergantung pada sudut arah.",
+        videoId: "s6T7u8V9w0X" // Masukkan ID Video Edcent: Pengantar Vektor
       },
       {
-        title: "Penguraian Vektor pada Sumbu X dan Y",
-        why: "Kunci dasar trigonometri (sin/cos) untuk membedah gaya yang posisinya miring.",
+        title: "Penguraian Vektor pada Sumbu X dan Y (Sin/Cos)",
+        why: "Kunci trigonometri dasar untuk memproyeksikan gaya miring.",
         videoId: "y1Z2a3B4c5D"
       },
       {
-        title: "Resultan Vektor dengan Metode Analitis",
-        why: "Menghitung total seluruh gaya akhir yang bekerja pada sebuah objek.",
+        title: "Menghitung Resultan Vektor Metode Analitis",
+        why: "Menjumlahkan total resultan gaya sumbu X dan Y hingga nilai akhir.",
         videoId: "e6F7g8H9i0J"
       }
     ]
   },
+
+  // ---------------- CODING (KELAS TERBUKA) ----------------
   {
     keyword: "dasar pemrograman",
     subject: "Coding",
-    title: "Roadmap Dasar-Dasar Pemrograman",
+    channel: "Kelas Terbuka",
+    title: "Roadmap Dasar Pemrograman & Logika Komputer",
     steps: [
       {
-        title: "Logika Algoritma (Input -> Proses -> Output)",
-        why: "Coding adalah cara menyusun instruksi teratur yang bisa dimengerti komputer.",
-        videoId: "k1L2m3N4o5P"
+        title: "Bagaimana Program Bekerja (Input, Process, Output)",
+        why: "Pak Faqihza menjelaskan cara mesin mengeksekusi baris instruksi secara sekuensial.",
+        videoId: "k1L2m3N4o5P" // Masukkan ID Video Kelas Terbuka: Pengenalan Logika
       },
       {
-        title: "Struktur Percabangan (IF - ELSE)",
-        why: "Membuat program mampu mengambil keputusan otomatis berdasarkan kondisi data.",
-        videoId: "q6R7s8T9u0V"
+        title: "Percabangan Logika (IF, ELIF, ELSE)",
+        why: "Mengajari komputer mengambil keputusan berdasarkan kondisi data.",
+        videoId: "q6R7s8T9u0V" // Masukkan ID Video Kelas Terbuka: IF Statement
       },
       {
-        title: "Struktur Perulangan (Looping)",
-        why: "Menjalankan ribuan tugas otomatis tanpa menulis baris kode berulang.",
-        videoId: "w1X2y3Z4a5B"
+        title: "Struktur Perulangan (For & While Loops)",
+        why: "Mengulang instruksi komputasi ribuan kali tanpa membuat baris kode berulang.",
+        videoId: "w1X2y3Z4a5B" // Masukkan ID Video Kelas Terbuka: Looping
       }
     ]
   },
   {
     keyword: "tipe data",
     subject: "Coding",
-    title: "Roadmap Tipe Data & Variabel",
+    channel: "Kelas Terbuka",
+    title: "Roadmap Variabel & Tipe Data",
     steps: [
       {
-        title: "Analogi Variabel sebagai Kotak Memori",
-        why: "Menyimpan nilai sementara agar dapat diolah dan diubah oleh komputer.",
-        videoId: "c6D7e8F9g0H"
+        title: "Mengenal Variabel (Alokasi Memori)",
+        why: "Variabel sebagai tempat penampung nilai di RAM sebelum dihitung.",
+        videoId: "c6D7e8F9g0H" // Masukkan ID Video Kelas Terbuka: Variabel
       },
       {
-        title: "Tipe Data Angka, Teks, & Boolean",
-        why: "Membedakan teks ('10') dan angka murni (10) agar operasi logika tidak error.",
+        title: "Tipe Data Angka (Integer/Float) & Teks (String)",
+        why: "Membedakan angka murni untuk operasi matematika dan teks berkarakter.",
         videoId: "i1J2k3L4m5N"
       },
       {
-        title: "Konversi Tipe Data (Type Casting)",
-        why: "Mengubah format teks dari form pengguna menjadi angka siap hitung.",
+        title: "Tipe Data Logika (Boolean) & Casting Tipe Data",
+        why: "Konsep True/False dan mengubah tipe data teks menjadi angka siap olah.",
         videoId: "o6P7q8R9s0T"
       }
     ]
   }
 ];
-
-let currentRoadmapSteps = [];
-let completedSteps = new Set();
-
-/* ================= NAVIGASI & PENCARIAN ================= */
-function quickSelect(topicName) {
-  document.getElementById('userInput').value = topicName;
-  cariRoadmap();
-}
-
-function handleEnter(e) {
-  if (e.key === 'Enter') cariRoadmap();
-}
-
-function cariRoadmap() {
-  const input = document.getElementById('userInput').value.toLowerCase().trim();
-  const container = document.getElementById('roadmapContainer');
-  const progressSection = document.getElementById('progressSection');
-  
-  if (!input) return;
-
-  const match = DATABASE_MATERI.find(item => 
-    input.includes(item.keyword) || item.title.toLowerCase().includes(input)
-  );
-
-  container.innerHTML = "";
-  completedSteps.clear();
-
-  if (match) {
-    currentRoadmapSteps = match.steps;
-    progressSection.style.display = "block";
-    document.getElementById('topicTitleDisplay').innerText = `${match.subject}: ${match.title}`;
-    updateProgressUI();
-
-    match.steps.forEach((step, index) => {
-      const card = document.createElement('div');
-      card.className = "step-card";
-      card.id = `card-step-${index}`;
-      card.innerHTML = `
-        <div class="step-header">
-          <div>
-            <div class="step-tag">Langkah ${index + 1} dari ${match.steps.length}</div>
-            <div class="step-title">${step.title}</div>
-          </div>
-        </div>
-        <div class="step-why">💡 <b>Kenapa ini dulu?</b> ${step.why}</div>
-        <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/${step.videoId}" allowfullscreen></iframe>
-        </div>
-        <button class="btn-complete" id="btn-step-${index}" onclick="toggleSelesai(${index})">
-          <span>⚪</span> Tandai Sudah Paham
-        </button>
-      `;
-      container.appendChild(card);
-    });
-  } else {
-    progressSection.style.display = "none";
-    container.innerHTML = `
-      <div class="empty-state">
-        <p>🔍 Materi "<b>${input}</b>" belum terdaftar di versi MVP.</p>
-        <p style="margin-top: 8px; font-size: 0.9rem;">Coba pilih tombol rekomendasi di atas: <b>Aljabar, Vektor, GLBB, atau Tipe Data</b>.</p>
-      </div>
-    `;
-  }
-}
-
-/* ================= SELEBRASI DIRAYAKAN ================= */
-const ucapanDirayakan = [
-  "Keren banget! Satu konsep berhasil kamu kuasai! 🔥",
-  "Langkah mantap! Fondasi belajarmu makin kokoh! 🧠",
-  "Paham satu hal baru hari ini! Pertahankan ritmenya! 🚀",
-  "Hebat! Kamu selangkah lebih dekat menguasai materi ini! ⭐"
-];
-
-function toggleSelesai(index) {
-  const card = document.getElementById(`card-step-${index}`);
-  const btn = document.getElementById(`btn-step-${index}`);
-
-  if (completedSteps.has(index)) {
-    completedSteps.delete(index);
-    card.classList.remove('completed');
-    btn.classList.remove('active');
-    btn.innerHTML = `<span>⚪</span> Tandai Sudah Paham`;
-  } else {
-    completedSteps.add(index);
-    card.classList.add('completed');
-    btn.classList.add('active');
-    btn.innerHTML = `<span>✔</span> Sudah Paham!`;
-    
-    // Pemicu Selebrasi (Konfeti + Ucapan)
-    fireConfetti();
-    showCelebrationToast();
-  }
-
-  updateProgressUI();
-}
-
-function updateProgressUI() {
-  const total = currentRoadmapSteps.length;
-  if (total === 0) return;
-  
-  const count = completedSteps.size;
-  const percentage = Math.round((count / total) * 100);
-  
-  document.getElementById('progressBar').style.width = `${percentage}%`;
-  document.getElementById('progressText').innerText = `${percentage}% Selesai`;
-
-  if (percentage === 100) {
-    showCelebrationToast("🎉 LUAR BIASA! Seluruh tahapan roadmap ini sudah tuntas!");
-  }
-}
-
-function showCelebrationToast(customText) {
-  const toast = document.getElementById('toastMessage');
-  const textElem = document.getElementById('toastText');
-  
-  const randomText = ucapanDirayakan[Math.floor(Math.random() * ucapanDirayakan.length)];
-  textElem.innerText = customText || randomText;
-
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-  }, 3200);
-}
-
-/* ================= CONFETTI CANVAS ENGINE ================= */
-const canvas = document.getElementById('confetti-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function fireConfetti() {
-  const colors = ['#38bdf8', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6'];
-  for (let i = 0; i < 70; i++) {
-    particles.push({
-      x: window.innerWidth / 2,
-      y: window.innerHeight * 0.7,
-      w: Math.random() * 8 + 4,
-      h: Math.random() * 8 + 4,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      vx: (Math.random() - 0.5) * 16,
-      vy: (Math.random() - 0.8) * 18,
-      gravity: 0.35,
-      rotation: Math.random() * 360,
-      rotationSpeed: (Math.random() - 0.5) * 10,
-      opacity: 1
-    });
-  }
-}
-
-function updateConfetti() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  for (let i = particles.length - 1; i >= 0; i--) {
-    const p = particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += p.gravity;
-    p.rotation += p.rotationSpeed;
-    p.opacity -= 0.012;
-
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate((p.rotation * Math.PI) / 180);
-    ctx.fillStyle = p.color;
-    ctx.globalAlpha = Math.max(p.opacity, 0);
-    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-    ctx.restore();
-
-    if (p.opacity <= 0 || p.y > canvas.height) {
-      particles.splice(i, 1);
-    }
-  }
-  requestAnimationFrame(updateConfetti);
-}
-updateConfetti();
