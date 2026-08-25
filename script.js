@@ -1,12 +1,16 @@
 let personCounter = 0;
 
-window.onload = () => tambahOrang();
+// Saat web dibuka, otomatis tambah 2 orang pertama
+window.onload = () => {
+    tambahOrang();
+    tambahOrang();
+};
 
 function tambahOrang() {
     personCounter++;
     const personHTML = `
         <div class="person-card anim-pop" id="person-${personCounter}">
-            <input type="text" class="person-name" placeholder="Nama Temen (Misal: Budi)" style="font-weight: bold;">
+            <input type="text" class="person-name" placeholder="Orang ke-${personCounter} (Misal: Budi)" style="font-weight: bold;">
             
             <div class="items-list" id="items-${personCounter}">
                 <div class="flex-row item-row" style="margin-bottom: 10px;">
@@ -66,34 +70,7 @@ function kalkulasiBill() {
         return;
     }
 
-    // 2. ANIMASI KUMPUL KARTU (CARD GATHERING)
-    const allBoxes = document.querySelectorAll('.header-card, .person-card, .btn-tambah, .btn-hitung');
-    const windowCenterY = window.innerHeight / 2;
-    const windowCenterX = window.innerWidth / 2;
-
-    allBoxes.forEach((box, index) => {
-        // Cari koordinat asli tiap-tiap kotak
-        const rect = box.getBoundingClientRect();
-        const boxCenterY = rect.top + rect.height / 2;
-        const boxCenterX = rect.left + rect.width / 2;
-        
-        // Hitung jarak yang harus ditempuh kotak menuju tengah layar
-        const moveY = windowCenterY - boxCenterY;
-        const moveX = windowCenterX - boxCenterX;
-        
-        // Bikin putaran menumpuk (kayak kipas kartu), tiap kotak beda 30 derajat
-        const rotasi = 360 + (index * 30); 
-
-        // Kirim angka jarak dan rotasi ke CSS lewat properti variabel
-        box.style.setProperty('--move-y', `${moveY}px`);
-        box.style.setProperty('--move-x', `${moveX}px`);
-        box.style.setProperty('--spin-rot', `${rotasi}deg`);
-        
-        // Picu animasinya
-        box.classList.add('anim-card-gather');
-    });
-
-    // 3. Susun Struk Pembayaran
+    // 2. Susun Struk Pembayaran
     let strukHTML = `<div class="bill-title">SPLIT BILL CALCULATOR<br><span style="font-size: 0.6em; font-weight: normal;">Dicetak Otomatis</span></div>`;
     let grandTotalSemua = 0;
 
@@ -119,14 +96,12 @@ function kalkulasiBill() {
 
     strukHTML += `<div class="bill-grand-total"><span>GRAND TOTAL:</span><span>Rp ${grandTotalSemua.toLocaleString('id-ID')}</span></div>`;
 
-    // 4. Setelah animasi selesai, sembunyikan kotak awal & munculkan struk
-    setTimeout(() => {
-        document.getElementById('app-container').style.display = 'none';
-        
-        const receiptContainer = document.getElementById('receipt-container');
-        document.getElementById('kertas-isi').innerHTML = strukHTML;
-        
-        receiptContainer.style.display = 'block';
-        receiptContainer.classList.add('anim-pop'); 
-    }, 1000); // 1000ms sama dengan durasi animasi di CSS
+    // 3. Transisi Langsung (Tanpa Animasi Putar)
+    document.getElementById('app-container').style.display = 'none';
+    
+    const receiptContainer = document.getElementById('receipt-container');
+    document.getElementById('kertas-isi').innerHTML = strukHTML;
+    
+    receiptContainer.style.display = 'block';
+    receiptContainer.classList.add('anim-pop'); 
 }
