@@ -1,9 +1,7 @@
 let personCounter = 0;
 
-// Saat web dibuka, otomatis tambah 1 orang pertama
 window.onload = () => tambahOrang();
 
-// Fungsi memunculkan kartu orang dengan efek Pop It
 function tambahOrang() {
     personCounter++;
     const personHTML = `
@@ -20,11 +18,9 @@ function tambahOrang() {
             <button class="btn-tambah" onclick="tambahMenu(${personCounter})">+ Tambah Menu Lain</button>
         </div>
     `;
-    // Memasukkan HTML ke dalam list
     document.getElementById('people-list').insertAdjacentHTML('beforeend', personHTML);
 }
 
-// Fungsi memunculkan input makanan tambahan 
 function tambahMenu(idOrang) {
     const menuHTML = `
         <div class="flex-row item-row anim-pop" style="margin-bottom: 10px;">
@@ -35,7 +31,6 @@ function tambahMenu(idOrang) {
     document.getElementById(`items-${idOrang}`).insertAdjacentHTML('beforeend', menuHTML);
 }
 
-// Fungsi Utama Kalkulasi & Animasi
 function kalkulasiBill() {
     const globalOngkir = Number(document.getElementById('global-ongkir').value) || 0;
     const personCards = document.querySelectorAll('.person-card');
@@ -43,7 +38,7 @@ function kalkulasiBill() {
     let dataOrang = [];
     let grandTotalMakanan = 0;
 
-    // 1. Ekstrak data dari semua input HTML
+    // 1. Kumpulkan Data
     personCards.forEach(card => {
         let nama = card.querySelector('.person-name').value || 'Tanpa Nama';
         let totalMakanOrang = 0;
@@ -71,16 +66,38 @@ function kalkulasiBill() {
         return;
     }
 
-    // 2. Memicu Animasi Muter & Nyatu (Spin Merge)
-    const appContainer = document.getElementById('app-container');
-    appContainer.classList.add('anim-spin');
+    // 2. ANIMASI KUMPUL KARTU (CARD GATHERING)
+    const allBoxes = document.querySelectorAll('.header-card, .person-card, .btn-tambah, .btn-hitung');
+    const windowCenterY = window.innerHeight / 2;
+    const windowCenterX = window.innerWidth / 2;
 
-    // 3. Menyiapkan Kertas Struk
+    allBoxes.forEach((box, index) => {
+        // Cari koordinat asli tiap-tiap kotak
+        const rect = box.getBoundingClientRect();
+        const boxCenterY = rect.top + rect.height / 2;
+        const boxCenterX = rect.left + rect.width / 2;
+        
+        // Hitung jarak yang harus ditempuh kotak menuju tengah layar
+        const moveY = windowCenterY - boxCenterY;
+        const moveX = windowCenterX - boxCenterX;
+        
+        // Bikin putaran menumpuk (kayak kipas kartu), tiap kotak beda 30 derajat
+        const rotasi = 360 + (index * 30); 
+
+        // Kirim angka jarak dan rotasi ke CSS lewat properti variabel
+        box.style.setProperty('--move-y', `${moveY}px`);
+        box.style.setProperty('--move-x', `${moveX}px`);
+        box.style.setProperty('--spin-rot', `${rotasi}deg`);
+        
+        // Picu animasinya
+        box.classList.add('anim-card-gather');
+    });
+
+    // 3. Susun Struk Pembayaran
     let strukHTML = `<div class="bill-title">SPLIT BILL CALCULATOR<br><span style="font-size: 0.6em; font-weight: normal;">Dicetak Otomatis</span></div>`;
     let grandTotalSemua = 0;
 
     dataOrang.forEach(orang => {
-        // Hitung jatah proporsional pajak/ongkir
         let porsiPajak = (orang.totalMakan / grandTotalMakanan) * globalOngkir;
         let totalBayarOrang = Math.ceil(orang.totalMakan + porsiPajak);
         grandTotalSemua += totalBayarOrang;
@@ -102,14 +119,14 @@ function kalkulasiBill() {
 
     strukHTML += `<div class="bill-grand-total"><span>GRAND TOTAL:</span><span>Rp ${grandTotalSemua.toLocaleString('id-ID')}</span></div>`;
 
-    // 4. Setelah animasi selesai (1.2 detik), sembunyikan aplikasi & munculkan struk
+    // 4. Setelah animasi selesai, sembunyikan kotak awal & munculkan struk
     setTimeout(() => {
-        appContainer.style.display = 'none';
+        document.getElementById('app-container').style.display = 'none';
         
         const receiptContainer = document.getElementById('receipt-container');
         document.getElementById('kertas-isi').innerHTML = strukHTML;
         
         receiptContainer.style.display = 'block';
         receiptContainer.classList.add('anim-pop'); 
-    }, 1200);
+    }, 1000); // 1000ms sama dengan durasi animasi di CSS
 }
