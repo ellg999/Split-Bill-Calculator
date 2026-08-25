@@ -3,86 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Split Bill Calculator</title>
-    <!-- font Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Kalkulator Patungan Lucu</title>
+    <!-- Memanggil font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            color: #ffffff;
+            /* Latar belakang gradasi biru gelap yang elegan */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
-        .kalkulator-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 380px;
+            padding: 35px 25px;
+            border-radius: 24px; /* Sudut membulat agar terlihat lucu & modern */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 320px;
+        }
+        h2 {
+            color: #1e3c72;
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+        p.subtitle {
+            color: #7b8a97;
+            font-size: 0.9em;
+            margin-bottom: 25px;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-size: 0.9em;
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .opsional {
+            font-size: 0.8em;
+            color: #a0aec0;
+            font-weight: 400;
         }
         input {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+            color: #2d3748;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            border-color: #4facfe; /* Garis biru terang saat mengetik */
         }
         button {
             width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background-color: #4facfe;
+            padding: 15px;
+            margin-top: 10px;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
         }
         button:hover {
-            background-color: #00f2fe;
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+            transform: translateY(-3px) scale(1.02); /* Efek tombol melayang lembut */
+            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.6);
         }
-        #hasil {
-            margin-top: 20px;
-            font-size: 1.2em;
-            font-weight: 600;
+        /* Desain area hasil yang awalnya tersembunyi */
+        #areaHasil {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f7ff;
+            border-radius: 16px;
+            border: 2px dashed #4facfe;
+            display: none; /* Disembunyikan sebelum dihitung */
+            transform: scale(0.9);
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek pantulan lembut */
+        }
+        #areaHasil.muncul {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+        .teks-hasil {
+            color: #4a5568;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+        .angka-hasil {
+            color: #1e3c72;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin: 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="kalkulator-card">
-        <h2>Calculate The Amount to Be Paid.</h2>
-        <input type="number" id="hargaMakanan" placeholder="Total Harga Pembelian (Rp)">
-        <input type="number" id="ongkirPajak" placeholder="Total Ongkir / Pajak (Rp) ">
-        <input type="number" id="jumlahOrang" placeholder="Berapa Orang Yang Memesan?">
+    <div class="card">
+        <h2>💸 Split Bill!</h2>
+        <p class="subtitle">Biar ga ribut pas bayar makan</p>
+
+        <div class="input-group">
+            <label>🍔 Harga Makanan</label>
+            <input type="number" id="hargaMakanan" placeholder="Contoh: 150000">
+        </div>
+
+        <div class="input-group">
+            <label>🛵 Ongkir / Pajak <span class="opsional">(Kosongkan jika tidak ada)</span></label>
+            <input type="number" id="ongkirPajak" placeholder="Contoh: 15000">
+        </div>
+
+        <div class="input-group">
+            <label>😎 Dibagi Berapa Orang?</label>
+            <input type="number" id="jumlahOrang" placeholder="Contoh: 3">
+        </div>
         
-        <button onclick="hitungPatungan()">Hitung Sekarang</button>
+        <button onclick="hitungPatungan()">Bagi Rata Sekarang! ✨</button>
         
-        <div id="hasil">Rp 0 / orang</div>
+        <div id="areaHasil">
+            <div class="teks-hasil">Masing-masing bayar:</div>
+            <h2 class="angka-hasil" id="angkaTampil">Rp 0</h2>
+        </div>
     </div>
 
     <script>
         function hitungPatungan() {
-            // 1. Mengambil angka dari input HTML
-            let harga = Number(document.getElementById("hargaMakanan").value);
-            let ongkir = Number(document.getElementById("ongkirPajak").value);
-            let orang = Number(document.getElementById("jumlahOrang").value);
+            // 1. Mengambil data. Tanda "|| 0" artinya jika kosong/tidak diisi, otomatis jadi 0
+            let harga = Number(document.getElementById("hargaMakanan").value) || 0;
+            let ongkir = Number(document.getElementById("ongkirPajak").value) || 0;
+            let orang = Number(document.getElementById("jumlahOrang").value) || 0;
 
-            // 2. Validasi sederhana agar tidak dibagi 0
+            // 2. Validasi agar logis
+            if (harga === 0) {
+                alert("Eh, harga makanannya diisi dulu dong! 🍔");
+                return;
+            }
             if (orang === 0) {
-                alert("Jumlah orang tidak boleh kosong!");
+                alert("Jumlah orangnya minimal 1 ya! 😎");
                 return;
             }
 
@@ -90,10 +171,20 @@
             let totalBayar = harga + ongkir;
             let bayarPerOrang = totalBayar / orang;
 
-            // 4. Menampilkan hasil ke layar
-            let elemenHasil = document.getElementById("hasil");
-            elemenHasil.innerHTML = "Masing-masing bayar: <br> Rp " + bayarPerOrang.toLocaleString('id-ID');
-            elemenHasil.style.opacity = 1; // Memunculkan teks dengan halus
+            // Menggunakan Math.ceil untuk membulatkan nominal uang ke atas agar tidak ada recehan repot
+            bayarPerOrang = Math.ceil(bayarPerOrang); 
+
+            // 4. Memicu animasi lembut dan mencetak hasil
+            let elemenArea = document.getElementById("areaHasil");
+            let elemenAngka = document.getElementById("angkaTampil");
+
+            elemenAngka.innerHTML = "Rp " + bayarPerOrang.toLocaleString('id-ID');
+            
+            // Menambahkan class 'muncul' agar CSS memicu efek transisi/animasi
+            elemenArea.style.display = "block"; // Munculkan kotaknya dulu
+            setTimeout(() => {
+                elemenArea.classList.add("muncul"); // Lalu picu animasi pantulannya
+            }, 10);
         }
     </script>
 
