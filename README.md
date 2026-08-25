@@ -1,1 +1,1 @@
-# Arahin
+# Split Bill Calculator
