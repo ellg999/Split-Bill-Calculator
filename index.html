@@ -3,190 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Split Bill Calc</title>
-    <!-- Memanggil font Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            /* Latar belakang gradasi biru gelap yang elegan */
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-        .card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 380px;
-            padding: 35px 25px;
-            border-radius: 24px; /* Sudut membulat agar terlihat lucu & modern */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        h2 {
-            color: #1e3c72;
-            margin-top: 0;
-            margin-bottom: 5px;
-            font-size: 1.6em;
-            font-weight: 700;
-        }
-        p.subtitle {
-            color: #7b8a97;
-            font-size: 0.9em;
-            margin-bottom: 25px;
-        }
-        .input-group {
-            text-align: left;
-            margin-bottom: 18px;
-        }
-        label {
-            display: block;
-            font-size: 0.9em;
-            color: #2a5298;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .opsional {
-            font-size: 0.8em;
-            color: #a0aec0;
-            font-weight: 400;
-        }
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1em;
-            color: #2d3748;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-        input:focus {
-            border-color: #4facfe; /* Garis biru terang saat mengetik */
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 10px;
-            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
-        }
-        button:hover {
-            transform: translateY(-3px) scale(1.02); /* Efek tombol melayang lembut */
-            box-shadow: 0 8px 20px rgba(79, 172, 254, 0.6);
-        }
-        /* Desain area hasil yang awalnya tersembunyi */
-        #areaHasil {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f0f7ff;
-            border-radius: 16px;
-            border: 2px dashed #4facfe;
-            display: none; /* Disembunyikan sebelum dihitung */
-            transform: scale(0.9);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek pantulan lembut */
-        }
-        #areaHasil.muncul {
-            display: block;
-            transform: scale(1);
-            opacity: 1;
-        }
-        .teks-hasil {
-            color: #4a5568;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-        .angka-hasil {
-            color: #1e3c72;
-            font-size: 1.8em;
-            font-weight: 700;
-            margin: 0;
-        }
-    </style>
+    <title>Split Bill Calculator</title>
+    <!-- Memanggil font eksternal -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Menghubungkan ke file CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="card">
-        <h2>💸 Split Bill!</h2>
-    
-
-        <div class="input-group">
-            <label>🍔 Harga Makanan</label>
-            <input type="number" id="hargaMakanan" placeholder="Contoh: 150000">
+    <!-- APLIKASI INPUT -->
+    <div id="app-container">
+        <div class="header-card anim-pop">
+            <h2>💸 Setup Bill</h2>
+            <input type="number" id="global-ongkir" placeholder="Total Ongkir / Pajak Struk (Opsional)">
         </div>
 
-        <div class="input-group">
-            <label>🛵 Ongkir / Pajak <span class="opsional">(Kosongkan jika tidak ada)</span></label>
-            <input type="number" id="ongkirPajak" placeholder="Contoh: 15000">
+        <div id="people-list">
+            <!-- Data orang akan dirender di sini oleh JavaScript -->
         </div>
 
-        <div class="input-group">
-            <label>😎 Dibagi Berapa Orang?</label>
-            <input type="number" id="jumlahOrang" placeholder="Contoh: 3">
-        </div>
-        
-        <button onclick="hitungPatungan()">Bagi Rata Sekarang! ✨</button>
-        
-        <div id="areaHasil">
-            <div class="teks-hasil">Masing-masing bayar:</div>
-            <h2 class="angka-hasil" id="angkaTampil">Rp 0</h2>
-        </div>
+        <button class="btn-tambah anim-pop" onclick="tambahOrang()">+ Tambah Orang Temenmu</button>
+        <button class="btn-hitung anim-pop" onclick="kalkulasiBill()">Hitung & Cetak Bill 🧾</button>
     </div>
 
-    <script>
-        function hitungPatungan() {
-            // 1. Mengambil data. Tanda "|| 0" artinya jika kosong/tidak diisi, otomatis jadi 0
-            let harga = Number(document.getElementById("hargaMakanan").value) || 0;
-            let ongkir = Number(document.getElementById("ongkirPajak").value) || 0;
-            let orang = Number(document.getElementById("jumlahOrang").value) || 0;
+    <!-- HASIL KERTAS STRUK -->
+    <div id="receipt-container">
+        <div class="kertas-bill" id="kertas-isi">
+            <!-- Hasil cetak struk dirender di sini -->
+        </div>
+        <button class="btn-hitung" style="margin-top: 40px;" onclick="location.reload()">Hitung Ulang 🔄</button>
+    </div>
 
-            // 2. Validasi agar logis
-            if (harga === 0) {
-                alert("Eh, harga makanannya diisi dulu dong! 🍔");
-                return;
-            }
-            if (orang === 0) {
-                alert("Jumlah orangnya minimal 1 ya! 😎");
-                return;
-            }
-
-            // 3. Logika Matematika
-            let totalBayar = harga + ongkir;
-            let bayarPerOrang = totalBayar / orang;
-
-            // Menggunakan Math.ceil untuk membulatkan nominal uang ke atas agar tidak ada recehan repot
-            bayarPerOrang = Math.ceil(bayarPerOrang); 
-
-            // 4. Memicu animasi lembut dan mencetak hasil
-            let elemenArea = document.getElementById("areaHasil");
-            let elemenAngka = document.getElementById("angkaTampil");
-
-            elemenAngka.innerHTML = "Rp " + bayarPerOrang.toLocaleString('id-ID');
-            
-            // Menambahkan class 'muncul' agar CSS memicu efek transisi/animasi
-            elemenArea.style.display = "block"; // Munculkan kotaknya dulu
-            setTimeout(() => {
-                elemenArea.classList.add("muncul"); // Lalu picu animasi pantulannya
-            }, 10);
-        }
-    </script>
-
+    <!-- Menghubungkan ke file JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
