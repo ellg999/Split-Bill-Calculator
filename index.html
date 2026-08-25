@@ -1,71 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arahin - Smart Learning Roadmap</title>
-  
-  <!-- Font Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- File CSS Eksternal -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Patungan</title>
+    <!-- Memanggil font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .kalkulator-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 320px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #00f2fe;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+        }
+        #hasil {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
 </head>
 <body>
 
-  <canvas id="confetti-canvas"></canvas>
-
-  <div class="container">
-    <header>
-      <div class="ai-badge">✨ Smart Learning Curator</div>
-      <h1>Mau belajar apa hari ini?</h1>
-      <p class="subtitle">Tulis materi sekolah yang membuatmu bingung. Kami susun jalurnya langkah demi langkah tanpa loncat materi.</p>
-      
-      <div class="search-box">
-        <input type="text" id="userInput" placeholder="Contoh: Aljabar, Vektor, GLBB, Tipe Data..." onkeydown="handleEnter(event)">
-        <button onclick="cariRoadmap()">Buat Roadmap</button>
-      </div>
-
-      <div class="chips-label">Pilihan Cepat untuk Dicoba:</div>
-      <div class="chips-group">
-        <span class="chip" onclick="quickSelect('Aljabar')">📐 Aljabar</span>
-        <span class="chip" onclick="quickSelect('Bangun Ruang')">📦 Bangun Ruang</span>
-        <span class="chip" onclick="quickSelect('Polinomial')">📈 Polinomial</span>
-        <span class="chip" onclick="quickSelect('GLBB')">🚀 GLBB (Fisika)</span>
-        <span class="chip" onclick="quickSelect('Vektor')">🧭 Vektor</span>
-        <span class="chip" onclick="quickSelect('Dasar Pemrograman')">💻 Dasar Koding</span>
-        <span class="chip" onclick="quickSelect('Tipe Data')">🔠 Tipe Data</span>
-      </div>
-    </header>
-
-    <!-- Progress Indicator -->
-    <div class="progress-section" id="progressSection">
-      <div class="progress-header">
-        <span id="topicTitleDisplay">Topik: -</span>
-        <span id="progressText">0% Selesai</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressBar"></div>
-      </div>
+    <div class="kalkulator-card">
+        <h2>Split Bill Apps</h2>
+        <input type="number" id="hargaMakanan" placeholder="Total Harga Makanan (Rp)">
+        <input type="number" id="ongkirPajak" placeholder="Total Ongkir / Pajak (Rp)">
+        <input type="number" id="jumlahOrang" placeholder="Berapa Orang?">
+        
+        <button onclick="hitungPatungan()">Hitung Sekarang</button>
+        
+        <div id="hasil">Rp 0 / orang</div>
     </div>
 
-    <!-- Tempat Kartu Alur Belajar -->
-    <div class="roadmap-list" id="roadmapContainer">
-      <div class="empty-state">
-        Ketik topik atau klik salah satu materi di atas untuk melihat peta belajarmu!
-      </div>
-    </div>
-  </div>
+    <script>
+        function hitungPatungan() {
+            // 1. Mengambil angka dari input HTML
+            let harga = Number(document.getElementById("hargaMakanan").value);
+            let ongkir = Number(document.getElementById("ongkirPajak").value);
+            let orang = Number(document.getElementById("jumlahOrang").value);
 
-  <!-- Toast Dirayakan -->
-  <div class="toast" id="toastMessage">
-    <span>🎉</span>
-    <span id="toastText">Keren banget! Satu langkah konsep berhasil kamu kuasai!</span>
-  </div>
+            // 2. Validasi sederhana agar tidak dibagi 0
+            if (orang === 0) {
+                alert("Jumlah orang tidak boleh kosong!");
+                return;
+            }
 
-  <!-- File JavaScript Eksternal -->
-  <script src="script.js"></script>
+            // 3. Logika Matematika
+            let totalBayar = harga + ongkir;
+            let bayarPerOrang = totalBayar / orang;
+
+            // 4. Menampilkan hasil ke layar
+            let elemenHasil = document.getElementById("hasil");
+            elemenHasil.innerHTML = "Masing-masing bayar: <br> Rp " + bayarPerOrang.toLocaleString('id-ID');
+            elemenHasil.style.opacity = 1; // Memunculkan teks dengan halus
+        }
+    </script>
+
 </body>
 </html>
