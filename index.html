@@ -13,25 +13,36 @@
 
     <!-- APLIKASI INPUT -->
     <div id="app-container">
-        <div class="header-card anim-pop">
-            <h2>💸 Setup Bill</h2>
-            <input type="number" id="global-ongkir" placeholder="Total Ongkir / Pajak Struk (Opsional)">
+        
+        <div class="horizontal-container" id="main-layout">
+            
+            <!-- Kolom Kiri: Setup Utama -->
+            <div class="left-panel anim-pop">
+                <div class="header-card">
+                    <h2>💸 Setup Bill</h2>
+                    <label style="display: block; font-size: 0.9em; margin-bottom: 8px; color: #a0aec0;">Total Pajak/Ongkir Keseluruhan</label>
+                    <input type="number" id="global-ongkir" placeholder="Rp (Opsional)">
+                    
+                    <button class="btn-tambah" onclick="tambahOrang()" style="margin-top: 15px;">+ Tambah Orang</button>
+                    <button class="btn-hitung" onclick="kalkulasiBill()">Hitung & Cetak Bill 🧾</button>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Daftar Orang yang Berjejer Horizontal -->
+            <div class="right-panel" id="people-list">
+                <!-- Data orang akan dirender di sini oleh JavaScript -->
+            </div>
+            
         </div>
 
-        <div id="people-list">
-            <!-- Data orang akan dirender di sini oleh JavaScript -->
-        </div>
-
-        <button class="btn-tambah anim-pop" onclick="tambahOrang()">+ Tambah Orang Temenmu</button>
-        <button class="btn-hitung anim-pop" onclick="kalkulasiBill()">Hitung & Cetak Bill 🧾</button>
     </div>
 
-    <!-- HASIL KERTAS STRUK -->
+    <!-- HASIL KERTAS STRUK (Berada di tengah) -->
     <div id="receipt-container">
         <div class="kertas-bill" id="kertas-isi">
             <!-- Hasil cetak struk dirender di sini -->
         </div>
-        <button class="btn-hitung" style="margin-top: 40px;" onclick="location.reload()">Hitung Ulang 🔄</button>
+        <button class="btn-hitung" style="margin-top: 40px; max-width: 400px; margin-left: auto; margin-right: auto; display: block;" onclick="location.reload()">Hitung Ulang 🔄</button>
     </div>
 
     <!-- Menghubungkan ke file JavaScript -->
